@@ -1,0 +1,100 @@
+﻿@model CreateGameFromViewModel
+
+<h2>
+    Create
+</h2>
+
+
+<form asp-action="Create" enctype="multipart/form-data">
+
+
+<div class="row">
+
+    <div class="col-md-6">
+
+
+            <div class="form-group">
+                      <label asp-for="Name"  class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="CategoryId" asp-items="Model.Categories"
+                        data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                    <option value=""></option>
+                </select>
+                <span class="text-danger" asp-validation-for="CategoryId"></span>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="SelectedDevices" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices"
+                        data-placeholder="Select Devices" data-minimum-results-for-search="Infinity">
+                    <option value=""></option>
+                </select>
+                <span class="text-danger" asp-validation-for="SelectedDevices"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Descreption" class="form-label mt-4"></label>
+                <textarea class="form-control" asp-for="Descreption" rows="3" placeholder="Descreption"></textarea>
+                <span class="text-danger" asp-validation-for="Descreption"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Cover" class="form-label mt-4"></label>
+                <input accept=" image /*"  class="form-control" type="file" asp-for="Cover"
+                       data-rule-extension="@FileSettings.AllowedExtentions.Replace(".", string.Empty)"
+                       data-msg-extension="Not allowed extension"
+                       data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
+                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSize MB"
+                >
+                <small  class="form-text text-muted">* @(FileSettings.AllowedExtentions) | max size @(FileSettings.MaxFileSize)MB</small>
+                <br />
+                <span class="text-danger" asp-validation-for="Cover"></span>
+
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-primary mt-4">Save</button>
+
+
+
+
+    </div>
+
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img id="Image" alt="Cover Preview">
+
+    </div>
+
+
+</div>
+
+
+</form>
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/game-form-cover.js" asp-append-version="true"></script>
+
+}
+
+
+

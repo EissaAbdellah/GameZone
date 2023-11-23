@@ -1,0 +1,39 @@
+﻿@model Game
+
+
+<div class="container mt-4">
+    <h1>@Model.Name</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <img src="@($"{FileSettings.ImagePath}/{Model.Cover}")" alt="@Model.Name" class="img-fluid w-100" style="height:500px" />
+        </div>
+        <div class="col-md-6">
+            <p><strong>Category: </strong>
+                <span class="badge bg-danger">
+                    @Model.Category.Name
+
+                </span>
+
+                </p>
+            <p>
+
+                <strong class="text-light">Description:</strong>
+                
+            </p>
+            <p>
+             @Model.Descreption
+            </p>
+
+            <p>
+            <strong class="text-light">Available on : </strong>
+            </p>
+            @foreach (var device in Model.Devices)
+            {
+                <i class="@device.Device.Icon me-2 fs-1 text-primary"></i>
+            }
+
+
+        </div>
+    </div>
+</div>

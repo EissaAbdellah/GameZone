@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Game>
+@{
+
+    ViewData["Titel"] = "Games";
+}
+
+<p>
+    <a class="btn btn-primary btn-lg" asp-action="Create">
+
+    <i class="bi bi-plus-square"></i>
+    ADD GAME
+
+    </a>
+</p>
+
+
+
+
+
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning mt-6 text-center">
+        <h4 class="alert-heading">No Games!</h4>
+    </div>
+
+}
+
+else{
+
+
+
+    <div class="container mt-4">
+        <h1>Game List</h1>
+        <table class="table">
+            <tbody>
+                @foreach (var game in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <img src="@($"{FileSettings.ImagePath}/{game.Cover}")" alt="@game.Name" class="game-image"
+                                         style="width:150px;  height: 150px;  margin:5px;" />
+                                </div>
+                                <div class="ml-2">
+                                    <p>@game.Name</p>
+                                    <p class="text-muted">@game.Category.Name</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@game.Id" class="btn btn-warning">Edit</a>
+                            <a href="javascript:;" class="btn btn-danger js-delete" data-id="@game.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+}
+
+
+@section Scripts{
+    
+    <script src="~/js/sweatalert2ajax.js" asp-append-version="true"></script>
+  
+}
